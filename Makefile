@@ -27,3 +27,6 @@ install: node_modules .git git-hooks ## Install development requirements (defaul
 
 clean: ## Remove all generated files
 	rm -rf *.png
+
+ansible: ## Run ansible playbook
+	ansible-playbook -i install-targets.yml infrastructure/install.yml
