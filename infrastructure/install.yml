@@ -77,7 +77,6 @@
     become: no
     cron:
       name: strava-tools-kudos
-      minute: '0'
-      hour: '0'
+      minute: '*/15'
       job: node /opt/projects/strava-tool/auto-kudos.js
       state: present
