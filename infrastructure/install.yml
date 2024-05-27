@@ -78,5 +78,29 @@
     cron:
       name: strava-tools-kudos
       minute: '*/15'
-      job: node /opt/projects/strava-tool/auto-kudos.js
+      job: node /opt/projects/strava-tool/auto-kudos.js >> /var/log/strava-tools.log 2>&1
       state: present
+
+  - name: Setup log rotate
+    ansible.builtin.copy:
+      content: |
+        /var/log/strava-tools.log {
+          daily
+          rotate 7
+          compress
+          delaycompress
+          missingok
+          notifempty
+          create 666 root root
+        }
+      dest: /etc/logrotate.d/strava-tools
+      owner: root
+      group: root
+      mode: '0644'
+    notify: restart rsyslog
+
+  handlers:
+  - name: restart rsyslog
+    service:
+      name: rsyslog
+      state: restarted
