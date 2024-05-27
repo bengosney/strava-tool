@@ -1,0 +1,21 @@
+{
+  "name": "strava-tools",
+  "version": "0.0.0",
+  "main": "auto-kudos.js",
+  "type": "module",
+  "scripts": {
+    "start": "node auto-kudos.js"
+  },
+  "keywords": [],
+  "author": "Ben Gosney",
+  "license": "GPL-3.0+",
+  "description": "",
+  "dependencies": {
+    "puppeteer": "^22.10.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.3.0",
+    "eslint": "^9.3.0",
+    "globals": "^15.3.0"
+  }
+}
