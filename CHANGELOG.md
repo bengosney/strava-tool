@@ -1,3 +1,9 @@
+## 0.3.0 (2024-05-27)
+
+### Feat
+
+- **install**: create ansible install script
+
 ## 0.2.0 (2024-05-27)
 
 ### Feat
