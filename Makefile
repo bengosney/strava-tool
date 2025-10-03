@@ -1,4 +1,4 @@
-.PHONY: help install clean git-hooks all test
+.PHONY: help install clean git-hooks all test build
 .DEFAULT_GOAL := install
 
 help: ## Display this help
@@ -30,3 +30,9 @@ clean: ## Remove all generated files
 
 ansible: ## Run ansible playbook
 	ansible-playbook -i install-targets.yml infrastructure/install.yml
+
+dist/%.js: src/%.ts node_modules
+	npx --yes esbuild $< --bundle --platform=node --packages=external --outfile=$@
+#	npx tsc $< --outDir build --esModuleInterop --resolveJsonModule --lib es6,dom --module commonjs --target es6 --skipLibCheck --strict
+
+build: dist/auto-kudos.js

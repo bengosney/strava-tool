@@ -1,15 +1,35 @@
-import puppeteer from "puppeteer";
-import config from "./config.js";
+import puppeteer, { Browser, Page } from "puppeteer";
+import { readFileSync } from "fs";
+import path from "path";
 
-const log = (message, ...options) =>
+interface StravaConfig {
+  strava: {
+    username: string;
+    password: string;
+    club_id: string;
+  };
+}
+
+function loadConfig(): StravaConfig {
+  const configPath = path.resolve(__dirname, "./config.json");
+  const raw = readFileSync(configPath, "utf-8");
+  return JSON.parse(raw);
+}
+
+const log = (message: string, ...options: any[]) =>
   console.log(`[${new Date().toISOString()}] ${message}`, ...options);
 
 (async () => {
   log("Starting auto-kudos script");
-  const browser = await puppeteer.launch({
+
+  log("Loading configuration");
+  const config = loadConfig();
+
+  log("Launching browser");
+  const browser: Browser = await puppeteer.launch({
     args: ["--no-sandbox", "--disable-setuid-sandbox"],
   });
-  const page = await browser.newPage();
+  const page: Page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 2000 });
   await page.goto("https://www.strava.com/login");
 
