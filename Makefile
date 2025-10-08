@@ -27,12 +27,16 @@ install: node_modules .git git-hooks ## Install development requirements (defaul
 
 clean: ## Remove all generated files
 	rm -rf *.png
+	rm dist/*.js
 
 ansible: ## Run ansible playbook
 	ansible-playbook -i install-targets.yml infrastructure/install.yml
 
 dist/%.js: src/%.ts node_modules
-	npx --yes esbuild $< --bundle --platform=node --packages=external --outfile=$@
+	npx --yes esbuild $< --bundle --format=esm --platform=node --packages=external --target=node10.4 --outfile=$@
 #	npx tsc $< --outDir build --esModuleInterop --resolveJsonModule --lib es6,dom --module commonjs --target es6 --skipLibCheck --strict
 
 build: dist/auto-kudos.js
+
+run: build ## Run the auto-kudos script
+	node dist/auto-kudos.js

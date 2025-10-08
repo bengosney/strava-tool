@@ -73,6 +73,13 @@
       chdir: /opt/projects/strava-tool
     when: git_result is changed
 
+  - name: Install playwright browsers
+    become: no
+    ansible.builtin.command:
+      cmd: npx playwright install
+      chdir: /opt/projects/strava-tool
+    when: git_result is changed
+
   - name: Add cron job
     become: no
     cron:

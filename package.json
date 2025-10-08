@@ -4,14 +4,14 @@
   "main": "auto-kudos.js",
   "type": "module",
   "scripts": {
-    "start": "node auto-kudos.js"
+    "start": "node ./dist/auto-kudos.js"
   },
   "keywords": [],
   "author": "Ben Gosney",
   "license": "GPL-3.0+",
   "description": "",
   "dependencies": {
-    "puppeteer": "^22.10.0"
+    "playwright": "^1.55.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.3.0",

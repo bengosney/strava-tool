@@ -166,5 +166,6 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,node,direnv
 
-config.js
+config.json
+auth.json
 install-targets.yml
